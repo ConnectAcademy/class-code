@@ -1,42 +1,49 @@
-import React from "react";
-import Container from "./components/Container";
-import ImageContainer from "./components/ImageContainer";
-import Card from "./components/Card";
-import ContactContainer from "./components/ContactContainer";
-import ContactForm from "./components/ContactForm";
-import SubmitButton from "./components/SubmitButton";
+import React, { useEffect, useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import jsonPhApi from "./axios/jsonPh";
 
-function App() {
+import Post from "./components/Post";
+
+const App = () => {
+  const [term, setTerm] = useState("");
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    jsonPhApi.get("/posts").then((response) => setPosts(response));
+  }, []);
+
+  const postToServer = () => {
+    jsonPhApi
+      .post("/posts", { title: "foo", body: "bar", userId: 1 })
+      .then((res) => console.log(res));
+  };
   return (
-    <Container heading="LET'S CONNECT">
-      <ImageContainer>
-        <Card
-          imageLocation="image/location.png"
-          heading="OUR MAIN OFFICE"
-          content="SoHo 94 Broadway St New York, NY 1001"
-        />
-        <Card
-          imageLocation="image/call.png"
-          heading="PHONE NUMBER"
-          content="234-9876-5400 888-0123-4567 (Toll Free)"
-        />
-        <Card
-          imageLocation="image/fax.png"
-          heading="FAX"
-          content="1-234-567-8900"
-        />
-        <Card
-          imageLocation="image/email.png"
-          heading="MAIL"
-          content="hello@theme.com"
-        />
-      </ImageContainer>
-      <ContactContainer>
-        <ContactForm />
-        <SubmitButton />
-      </ContactContainer>
-    </Container>
+    <>
+      <Form>
+        <Form.Group className="mb-3 m-5" controlId="textInput">
+          <Form.Label>Search</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Input search term here"
+            onChange={setTerm}
+          />
+          <Form.Text>Search</Form.Text>
+        </Form.Group>
+        <Button type="submit" className="mx-5">
+          Submit
+        </Button>
+      </Form>
+      <Button onClick={() => postToServer()}>Post to server</Button>
+      {posts &&
+        posts.map((post) => (
+          <Post
+            key={post.id}
+            header={post.title}
+            content={post.body}
+            userId={post.userId}
+          />
+        ))}
+    </>
   );
-}
+};
 
 export default App;
