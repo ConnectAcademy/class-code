@@ -1,53 +1,43 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Button, Card, ProgressBar } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Info from "./Info";
-import PersonInputs from "./PersonInputs";
+import React from "react";
 
-const App = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [age, setAge] = useState(0);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0, show: true };
+    this.increment = this.increment.bind(this);
+    this.decrement = this.decrement.bind(this);
+  }
 
-  console.log("Name: ", firstName, " Surname: ", lastName, " age: ", age);
+  componentDidMount() {
+    console.log("I will render once i mount");
+  }
 
-  //   useEffect(() => {
-  //     console.log("Count and isloading changed and componet fist mount");
-  //   }, [count, isLoading]);
+  componentDidUpdate() {
+    console.log("I updated!");
+  }
 
-  //   useEffect(() => {
-  //     console.log("Is loading changed and componet fist mount");
-  //     return () => {
-  //         console.log("I am in return")
-  //     }
-  //   }, []);
+  componentWillUnmount() {
+    alert("I am about to dismount");
+  }
 
-  return (
-    <>
-      <PersonInputs
-        firstName={firstName}
-        onSetFirst={setFirstName}
-        lastName={lastName}
-        onSetLest={setLastName}
-        age={age}
-        onSetAge={setAge}
-      />
-      <Button variant="success">Succes</Button>
-      <ProgressBar now={60} />
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
-        <Card.Body>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-      </Card>
-      <Info firstName={firstName} lastName={lastName} age={age} />
-    </>
-  );
-};
+  increment() {
+    this.setState({ count: this.state.count + 1 });
+  }
+
+  decrement() {
+    this.setState({ count: this.state.count + -1 });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>{this.state.count}</h1>
+        {console.log("Re-render")}
+        <button onClick={this.increment}>Increment</button>
+        <button onClick={this.decrement}>Decrement</button>
+      </div>
+    );
+  }
+}
 
 export default App;
