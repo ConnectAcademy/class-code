@@ -1,43 +1,42 @@
 import React from "react";
+import Container from "./components/Container";
+import ImageContainer from "./components/ImageContainer";
+import Card from "./components/Card";
+import ContactContainer from "./components/ContactContainer";
+import ContactForm from "./components/ContactForm";
+import SubmitButton from "./components/SubmitButton";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { count: 0, show: true };
-    this.increment = this.increment.bind(this);
-    this.decrement = this.decrement.bind(this);
-  }
-
-  componentDidMount() {
-    console.log("I will render once i mount");
-  }
-
-  componentDidUpdate() {
-    console.log("I updated!");
-  }
-
-  componentWillUnmount() {
-    alert("I am about to dismount");
-  }
-
-  increment() {
-    this.setState({ count: this.state.count + 1 });
-  }
-
-  decrement() {
-    this.setState({ count: this.state.count + -1 });
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>{this.state.count}</h1>
-        {console.log("Re-render")}
-        <button onClick={this.increment}>Increment</button>
-        <button onClick={this.decrement}>Decrement</button>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <Container heading="LET'S CONNECT">
+      <ImageContainer>
+        <Card
+          imageLocation="image/location.png"
+          heading="OUR MAIN OFFICE"
+          content="SoHo 94 Broadway St New York, NY 1001"
+        />
+        <Card
+          imageLocation="image/call.png"
+          heading="PHONE NUMBER"
+          content="234-9876-5400 888-0123-4567 (Toll Free)"
+        />
+        <Card
+          imageLocation="image/fax.png"
+          heading="FAX"
+          content="1-234-567-8900"
+        />
+        <Card
+          imageLocation="image/email.png"
+          heading="MAIL"
+          content="hello@theme.com"
+        />
+      </ImageContainer>
+      <ContactContainer>
+        <ContactForm />
+        <SubmitButton />
+      </ContactContainer>
+    </Container>
+  );
 }
 
 export default App;

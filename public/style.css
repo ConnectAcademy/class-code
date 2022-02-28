@@ -1,0 +1,60 @@
+html,
+body {
+  font-family: "Roboto", "Arial", "sans-serif";
+  background-color: #e8e8e8;
+}
+
+.main {
+  margin: 0 auto;
+  width: 1300px;
+}
+
+.main .header {
+  text-align: center;
+}
+
+.main .images {
+  text-align: center;
+}
+
+.main .fax .email {
+  vertical-align: top;
+}
+
+.block2 {
+  vertical-align: top;
+}
+
+.block2 .header {
+  margin-left: 150px;
+}
+
+.inputph {
+  width: 400px;
+  height: 50px;
+  border: 1px solid white;
+  display: block;
+  margin-bottom: 0.8em;
+  color: lightgray;
+}
+
+.textareaph {
+  width: 400px;
+  height: 150px;
+  border: 1px solid white;
+  display: block;
+}
+
+.button {
+  margin: 25px auto;
+  width: 200px;
+  background: white;
+  font-size: 1.2em;
+  padding: 1em;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+
+input {
+}
