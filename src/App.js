@@ -1,4 +1,57 @@
 import "./App.css";
+import React, { useEffect, useState, useRef } from "react";
+
+const App = () => {
+  const [text, setText] = useState("");
+  const [timeRemaining, setTimeRemaining] = useState(5);
+  const [starter, setStarter] = useState(false);
+  const [countedWords, setCountedWords] = useState(0);
+  const textRef = useRef();
+  useEffect(() => {
+    if (timeRemaining > 0 && starter) {
+      setTimeout(() => setTimeRemaining((pred) => pred - 1), 1000);
+    } else {
+      endGame();
+    }
+  }, [timeRemaining, starter]);
+
+  function wordCount(text) {
+    const wordArr = text.split(" ");
+    return wordArr.filter((el) => el !== "").length;
+  }
+
+  function endGame() {
+    setStarter(false);
+    setCountedWords(wordCount(text));
+    textRef.current.disabled = true;
+  }
+
+  function startGame() {
+    setText("");
+    setTimeRemaining(5);
+    setStarter(true);
+    setCountedWords(0);
+    textRef.current.disabled = false;
+    textRef.current.focus();
+  }
+
+  return (
+    <>
+      <h1>How fast do you type</h1>
+      <textarea
+        onChange={(e) => setText(e.target.value)}
+        value={text}
+        disabled={true}
+        ref={textRef}
+      />
+      <h4>Time remaining: {timeRemaining}</h4>
+      <button onClick={() => startGame()}>START</button>
+      <h1>Word count: {countedWords}</h1>
+    </>
+  );
+};
+
+export default App;
 /**
  * Vezba-2:
  * Cekor 1: Kreirajte ja strukturata od applikacijata
@@ -19,6 +72,7 @@ import "./App.css";
  * Cekor 4:
  * 1. Kreirajte "state" so soodveten hook shto ke ja drzi vrednosta na casovnikot. I da se pokaze vrednosta
  * vo "Time remaining: "
+ * useEffect(() => {}, [])
  * 2. Koristete useEffect koj ke ni se povikuva sekoj pat koga ni se promenuva vrednosta od "state" shto go
  * napravivte predhodno za casovnikot. I sekoj pat koga ke se povika, posle 1 sekunda da ja namaluva vrednosta
  * na casovnikot. Pomosh: koristete setTimeout(() => {}, 1000)
