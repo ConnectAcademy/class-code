@@ -1,0 +1,51 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "id": 2,
+      "body": "some comment 2",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "connectacademy": [
+    {
+      "id": "Fiko",
+      "name": "Fiko",
+      "type": "Studen"
+    },
+    {
+      "id": "Admen Sherifoski",
+      "name": "Admen Sherifoski",
+      "type": "Lecturer"
+    },
+    {
+      "id": "Mirsat",
+      "name": "Mirsat",
+      "type": "Lecturer"
+    },
+    {
+      "id": "Mirsat2",
+      "name": "Mirsat2",
+      "type": "Lecturer"
+    },
+    {
+      "id": "khjdashkj",
+      "name": "khjdashkj",
+      "type": "jadskjhdas"
+    }
+  ]
+}
