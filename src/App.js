@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Routes, Route } from "react-router-dom";
+
+import { AuthContext } from "./AuthContext";
+import Home from "./pages/Home";
+import Proteced from "./pages/Proteced";
 
 const App = () => {
-  return <h1>Hello World!</h1>;
+  const { isSignedIn, signUser, allUsers } = useContext(AuthContext);
+  allUsers !== [] && console.log(allUsers);
+  return (
+    <>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        {isSignedIn && <Route exact path="/protected" element={<Proteced />} />}
+      </Routes>
+    </>
+  );
 };
 
 export default App;

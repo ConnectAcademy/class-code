@@ -1,4 +1,14 @@
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+
+import AuthContextProvider from "./AuthContext";
 import App from "./App";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <AuthContextProvider>
+    <Router>
+      <App />
+    </Router>
+  </AuthContextProvider>,
+  document.getElementById("root")
+);
