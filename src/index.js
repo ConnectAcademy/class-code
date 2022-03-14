@@ -1,4 +1,14 @@
 import ReactDOM from "react-dom";
 import App from "./App";
+import { BrowserRouter as Router } from "react-router-dom";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import GameContextProvider from "./GameContext";
+
+ReactDOM.render(
+  <GameContextProvider>
+    <Router>
+      <App />
+    </Router>
+  </GameContextProvider>,
+  document.getElementById("root")
+);

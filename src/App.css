@@ -46,6 +46,31 @@ textarea {
   padding: 10px;
 }
 
+input {
+  font-family: "Press Start 2P", cursive;
+  border: 3px solid black;
+  width: 90%;
+  margin: 0 auto;
+  outline: none;
+  height: 20px;
+  background: #00b800;
+  padding: 10px;
+}
+
 textarea:disabled {
   background-color: #a5a2a2;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 100px;
+  margin-right: 100px;
+  list-style: none;
+}
+.list a {
+  background-color: #00b800;
+  color: black;
+  padding: 5px 10px;
 }

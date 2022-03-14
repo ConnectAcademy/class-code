@@ -1,24 +1,21 @@
 import "./App.css";
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
-import useGame from "./hooks/useGame";
+import Game from "./pages/Game";
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import Settings from "./pages/Settings";
 
 const App = () => {
-  const { setText, text, textRef, timeRemaining, startGame, countedWords } =
-    useGame();
-
   return (
     <>
-      <h1>How fast do you type</h1>
-      <textarea
-        onChange={(e) => setText(e.target.value)}
-        value={text}
-        disabled={true}
-        ref={textRef}
-      />
-      <h4>Time remaining: {timeRemaining}</h4>
-      <button onClick={() => startGame()}>START</button>
-      <h1>Word count: {countedWords}</h1>
+      <Header />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/play" element={<Game />} />
+        <Route exact path="/settings" element={<Settings />} />
+      </Routes>
     </>
   );
 };
