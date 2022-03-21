@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const addPolicy = (name, cash) => {
   return {
     type: "ADD_POLICY",
@@ -27,4 +29,9 @@ export const tip = (cash) => {
     type: "TIP",
     payload: { cash },
   };
+};
+
+export const getPosts = () => async (dispatch) => {
+  const respone = await axios.get("https://jsonplaceholder.typicode.com/posts");
+  dispatch({ type: "ALL_POSTS", payload: respone.data });
 };
