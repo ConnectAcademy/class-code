@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { addPolicy } from "./store/action";
+import AddPolicy from "./components/AddPolicy";
 
 const App = () => {
   const amountOfMoney = useSelector((state) => state.money);
@@ -9,9 +10,7 @@ const App = () => {
   return (
     <>
       <h1>{amountOfMoney}</h1>
-      <button onClick={() => dispatch(addPolicy("Mirsat", 100))}>
-        Add policy
-      </button>
+      <AddPolicy />
     </>
   );
 };
